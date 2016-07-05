@@ -47,6 +47,10 @@ RUN wget http://www.aplaline.com/grafana_2.6.0_armhf.deb && dpkg -i grafana_2.6.
 # Disable bluetooth service - we will manually start it later
 RUN systemctl disable bluetooth
 
+# Update grafana config
+COPY ./Dockerbin/grafana.ini /etc/grafana/grafana.ini
+COPY ./Dockerbin/grafana-server.service /usr/lib/systemd/system/grafana-server.service
+
 # Start services on boot
 RUN systemctl enable influxdb && systemctl enable telegraf && systemctl enable grafana-server
 
@@ -62,11 +66,6 @@ COPY ./package.json ./app/
 # NPM i app
 RUN npm i  --prefix /app
 
-# Grafana needs superpowers to access data partition and port 80
-RUN echo "grafana ALL=(ALL) ALL" >> /etc/sudoers
-
-# Update grafana config
-COPY ./Dockerbin/grafana.ini /etc/grafana/grafana.ini
 
 # Move app to filesystem
 COPY . ./app
