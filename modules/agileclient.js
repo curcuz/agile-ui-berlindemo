@@ -28,11 +28,6 @@
         }
     });
 
-    //fake data: write a single point, providing an integer timestamp and time precision 's' for seconds
-    client.writePoint(tisensortag.series.humidity, {time: new Date(), value: 232}, null, function done() {
-      console.log(chalk.yellow('faking humidity sensortag data entry'));
-    })
-
     setInterval(function keepalive() {
         console.log("keepalive");
     }, 60000);
