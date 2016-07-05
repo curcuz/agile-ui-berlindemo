@@ -3,17 +3,24 @@ FROM resin/%%RESIN_MACHINE_NAME%%-node:slim
 ## uncomment if you want systemd
 ENV INITSYSTEM on
 
-# Install apt deps
+# Install apt dependencies
 RUN apt-get clean && apt-get update && apt-get install -y \
   apt-utils \
   build-essential \
   wget \
   curl \
-  influxdb \
   ruby-dev \
-  rpm \
-  telegraf \
-  grafana && rm -rf /var/lib/apt/lists/*
+  gcc \
+  bison \
+  golang \
+  rpm && rm -rf /var/lib/apt/lists/*
+
+### taken from
+### http://www.aymerick.com/2015/10/07/influxdb-telegraf-grafana-raspberry-pi.html
+
+# InfluxDB
+RUN gem install fpm && gvm pkgset create influxdb && gvm pkgset use influxdb
+RUN mkdir -p ~/.gvm/pkgsets/go1.5/influxdb/src/github.com/influxdb
 
 # Start services on boot
 RUN systemctl enable influxdb && systemctl enable telegraf && systemctl enable grafana-server
