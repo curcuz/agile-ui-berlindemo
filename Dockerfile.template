@@ -21,7 +21,7 @@ RUN wget http://www.aplaline.com/influxdb_0.9.6.1_armhf.deb && dpkg -i influxdb_
 RUN wget http://www.aplaline.com/telegraf_0.3.0-beta2_armhf.deb && dpkg -i telegraf_0.3.0-beta2_armhf.deb && rm telegraf_0.3.0-beta2_armhf.deb
 
 # Grafana
-RUN wget http://www.aplaline.com/grafana_2.6.0_armhf.deb && dpkg -i http://www.aplaline.com/grafana_2.6.0_armhf.deb && rm http://www.aplaline.com/grafana_2.6.0_armhf.deb
+RUN wget http://www.aplaline.com/grafana_2.6.0_armhf.deb && dpkg -i grafana_2.6.0_armhf.deb && rm grafana_2.6.0_armhf.deb
 
 # Start services on boot
 RUN systemctl enable influxdb && systemctl enable telegraf && systemctl enable grafana-server
