@@ -15,12 +15,14 @@ RUN apt-get clean && apt-get update && apt-get install -y \
   golang \
   rpm && rm -rf /var/lib/apt/lists/*
 
-### taken from
-### http://www.aymerick.com/2015/10/07/influxdb-telegraf-grafana-raspberry-pi.html
-
 # InfluxDB
-RUN gem install fpm && gvm pkgset create influxdb && gvm pkgset use influxdb
-RUN mkdir -p ~/.gvm/pkgsets/go1.5/influxdb/src/github.com/influxdb
+RUN wget http://www.aplaline.com/influxdb_0.9.6.1_armhf.deb && dpkg -i influxdb_0.9.6.1_armhf.deb && rm influxdb_0.9.6.1_armhf.deb
+
+# Telegraf
+RUN wget http://www.aplaline.com/telegraf_0.3.0-beta2_armhf.deb && dpkg -i telegraf_0.3.0-beta2_armhf.deb && rm telegraf_0.3.0-beta2_armhf.deb
+
+# Grafana
+RUN wget http://www.aplaline.com/grafana_2.6.0_armhf.deb && dpkg -i http://www.aplaline.com/grafana_2.6.0_armhf.deb && rm http://www.aplaline.com/grafana_2.6.0_armhf.deb
 
 # Start services on boot
 RUN systemctl enable influxdb && systemctl enable telegraf && systemctl enable grafana-server
