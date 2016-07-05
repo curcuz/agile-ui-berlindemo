@@ -4,7 +4,7 @@
     const chalk = require('chalk');
     const influx = require('influx');
     const client = influx({
-      hosts: 'http://127.0.0.1',
+      host: 'http://127.0.0.1',
       port: 8086,
       username: 'root',
       password: 'root'
