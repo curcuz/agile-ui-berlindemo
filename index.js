@@ -4,7 +4,7 @@
     const influx = require('influx');
     const client = influx({
       hosts: 'http://127.0.0.1',
-      port: 8083
+      port: 8083,
       username: 'root',
       password: 'root'
      })
