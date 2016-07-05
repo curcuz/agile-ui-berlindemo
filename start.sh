@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Ensure mopidy folders are there
+mkdir /data/grafana || true
+mkdir /data/grafana/data || true
+mkdir /data/grafana/logs || true
+
 # Enable i2c
 modprobe i2c-dev || true
 # Enable Bluetooth

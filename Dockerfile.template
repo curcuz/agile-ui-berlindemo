@@ -52,6 +52,9 @@ COPY ./package.json ./app/
 # NPM i app
 RUN npm i  --prefix /app
 
+# Update grafana cofnig
+COPY ./Dockerbin/grafana.ini /etc/grafana/grafana.ini
+
 # Move app to filesystem
 COPY . ./app
 
