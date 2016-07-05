@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Link PM2 to Keymetrics.io
+if [ "$PM2_SECRET_ID" ]
+then
+    pm2 link $PM2_SECRET_ID $PM2_PUBLIC_ID || true
+fi
+
 # Ensure mopidy folders are there
 mkdir /data/grafana > /dev/null 2>&1 || true
 mkdir /data/grafana/data > /dev/null 2>&1 || true
