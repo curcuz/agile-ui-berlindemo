@@ -20,4 +20,4 @@ fi
 hciconfig hci0 up || true
 
 # Start application loop
-pm2 start /app/pm2.json && pm2 save
+pm2 start /app/pm2.json && pm2 save && pm2 logs
