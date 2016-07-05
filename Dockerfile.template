@@ -20,6 +20,8 @@ RUN wget http://archive.raspberrypi.org/debian/raspberrypi.gpg.key -O - | sudo a
 RUN apt-get clean && apt-get update && apt-get install -y \
   apt-utils \
   build-essential \
+  python-dev \
+  python-pip \
   ruby-dev \
   bison \
   golang \
