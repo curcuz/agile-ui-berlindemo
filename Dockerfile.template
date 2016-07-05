@@ -46,6 +46,12 @@ RUN systemctl disable bluetooth
 # Start services on boot
 RUN systemctl enable influxdb && systemctl enable telegraf && systemctl enable grafana-server
 
+# Install PM2
+RUN JOBS=MAX npm i pm2 -g
+
+# Install PM2 log-rotate
+RUN pm2 install pm2-logrotate && pm2 set pm2-logrotate:interval_unit 'DD' && pm2 set pm2-logrotate:retain 3
+
 # Move package to filesystem
 COPY ./package.json ./app/
 

@@ -1,0 +1,53 @@
+{
+    "apps": [{
+        "name": "ble",
+        "script": "ble.js",
+        "cwd": "/app/apps/",
+        "log_date_format": "YYYY-MM-DD HH:mm Z",
+        "merge_logs": true,
+        "out_file": "/data/logs/ble_out.log",
+        "err_file": "/data/logs/ble_err.log",
+        "exec_mode": "fork",
+        "instances": 1,
+        "watch": false,
+        "ignore_watch": ["[\\/\\\\]\\./", "node_modules"],
+        "max_memory_restart": "200M",
+        "env": {
+            "DBUS_SYSTEM_BUS_ADDRESS": "unix:path=/host_run/dbus/system_bus_socket",
+        }
+    }, {
+        "name": "fakeserver",
+        "script": "fakeserver.js",
+        "cwd": "/app/modules/",
+        "log_date_format": "YYYY-MM-DD HH:mm Z",
+        "merge_logs": true,
+        "out_file": "/data/logs/fakeserver_out.log",
+        "err_file": "/data/logs/fakeserver_err.log",
+        "exec_mode": "fork",
+        "instances": 1,
+        "watch": false,
+        "ignore_watch": ["[\\/\\\\]\\./", "node_modules"],
+        "max_memory_restart": "200M",
+        "env": {
+            "DBUS_SYSTEM_BUS_ADDRESS": "unix:path=/host_run/dbus/system_bus_socket",
+            "DISPLAY": ":0"
+        }
+    }, {
+        "name": "agileclient",
+        "script": "agileclient.js",
+        "cwd": "/app/modules/",
+        "log_date_format": "YYYY-MM-DD HH:mm Z",
+        "merge_logs": true,
+        "out_file": "/data/logs/agileclient_out.log",
+        "err_file": "/data/logs/agileclient_err.log",
+        "exec_mode": "fork",
+        "instances": 1,
+        "watch": false,
+        "ignore_watch": ["[\\/\\\\]\\./", "node_modules"],
+        "max_memory_restart": "200M",
+        "env": {
+            "DBUS_SYSTEM_BUS_ADDRESS": "unix:path=/host_run/dbus/system_bus_socket",
+            "DISPLAY": ":0"
+        }
+    }]
+}

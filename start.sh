@@ -15,5 +15,5 @@ hciconfig hci0 up || true
 
 # Start application loop
 while true; do
-    node /app/index.js
+    pm2 start /app/pm2.json
 done
