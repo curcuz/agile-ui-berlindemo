@@ -4,10 +4,10 @@
     const influx = require('influx');
     const client = influx({
       hosts: 'http://127.0.0.1',
-      port: 8083
+      port: 8086
       username: 'dbuser',
-      password: 'f4ncyp4ass',
-      database: 'my_database'
+      password: 'root',
+      database: 'root'
      })
 
     setInterval(function functionName() {
