@@ -29,7 +29,7 @@
     });
 
     setInterval(function keepalive() {
-        console.log("keepalive");
+        return true
     }, 60000);
 
 })();
