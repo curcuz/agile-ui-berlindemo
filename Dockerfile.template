@@ -62,7 +62,10 @@ COPY ./package.json ./app/
 # NPM i app
 RUN npm i  --prefix /app
 
-# Update grafana cofnig
+# Grafana needs superpowers to access data partition and port 80
+RUN echo "grafana ALL=(ALL) ALL" >> /etc/sudoers
+
+# Update grafana config
 COPY ./Dockerbin/grafana.ini /etc/grafana/grafana.ini
 
 # Move app to filesystem
