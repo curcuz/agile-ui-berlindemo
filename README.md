@@ -20,7 +20,7 @@ Name | Value
 
 ## Environment variables
 Name | Default | description
------------- | -------------
+------------ | ------------- | -------------
 **AGILE_CLIENT_PORT** | `1337` | the port on which is exposed the static server for the **Agile UI**
 **AGILE_SERVER_PORT** | `8000` | the port on which is exposed the **Agile** gateway server.
 **DATA_SERVER_PORT** | `3000` | the port on which is exposed the **Data** (InfluxDB) middleware server.
