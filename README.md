@@ -1,15 +1,15 @@
 # agile-ui-berlindemo
 A **[resin.io](https://resin.io)** application that aims to showcase the *Agile-IoT* potential.
 
-Protocols covered:
+## Technologies showcased
+[Agile-IoT](http://www.agile-project-iot.eu/) + [InfluxDB](https://influxdata.com/) + [Grafana](http://grafana.org/)
+
+## Protocols covered:
 * BLE
 
-Devices covered:
+## Devices covered:
 * rpi (zero), rpi2, rpi3
 * [TI Sensor TAG 2 (SimpleLink)](http://www.ti.com/tool/cc2650stk)
-
-
-[Agile-IoT](http://www.agile-project-iot.eu/) + [InfluxDB](https://influxdata.com/) + [Grafana](http://grafana.org/)
 
 ## Required configuration environment variables
 Name | Value
