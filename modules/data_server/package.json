@@ -1,0 +1,17 @@
+{
+  "name": "data_server",
+  "version": "0.0.1",
+  "description": "the Agile Data middleware, implemented by resin.io",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Carlo Maria Curinga <carlo@resin.io>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "chalk": "^1.1.3",
+    "influx": "^4.2.0",
+  }
+}

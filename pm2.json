@@ -1,12 +1,12 @@
 {
     "apps": [{
-        "name": "fakeserver",
-        "script": "fakeserver.js",
-        "cwd": "/app/modules/",
+        "name": "agile_server",
+        "script": "app.js",
+        "cwd": "/app/modules/agile_server/",
         "log_date_format": "YYYY-MM-DD HH:mm Z",
         "merge_logs": true,
-        "out_file": "/data/logs/fakeserver_out.log",
-        "err_file": "/data/logs/fakeserver_err.log",
+        "out_file": "/data/logs/agile_server_out.log",
+        "err_file": "/data/logs/agile_server_err.log",
         "exec_mode": "fork",
         "instances": 1,
         "watch": false,
@@ -17,9 +17,26 @@
             "DISPLAY": ":0"
         }
     }, {
-        "name": "agileclient",
-        "script": "agileclient.js",
-        "cwd": "/app/modules/",
+        "name": "data_server",
+        "script": "app.js",
+        "cwd": "/app/modules/data_server/",
+        "log_date_format": "YYYY-MM-DD HH:mm Z",
+        "merge_logs": true,
+        "out_file": "/data/logs/data_server_out.log",
+        "err_file": "/data/logs/data_server_err.log",
+        "exec_mode": "fork",
+        "instances": 1,
+        "watch": false,
+        "ignore_watch": ["[\\/\\\\]\\./", "node_modules"],
+        "max_memory_restart": "200M",
+        "env": {
+            "DBUS_SYSTEM_BUS_ADDRESS": "unix:path=/host_run/dbus/system_bus_socket",
+            "DISPLAY": ":0"
+        }
+    }, {
+        "name": "agile_client",
+        "script": "app.js",
+        "cwd": "/app/modules/agile_client/",
         "log_date_format": "YYYY-MM-DD HH:mm Z",
         "merge_logs": true,
         "out_file": "/data/logs/agileclient_out.log",

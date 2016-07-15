@@ -1,0 +1,17 @@
+{
+  "name": "agile_client",
+  "version": "0.0.1",
+  "description": "the Agile REST client (UI), implemented by resin.io",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Craig Mulligan <craig@resin.io>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "compression": "^1.6.2",
+    "express": "^4.14.0",
+    "serve-static": "^1.11.1"
+  }
+}
