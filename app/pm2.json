@@ -2,7 +2,7 @@
     "apps": [{
         "name": "agile_server",
         "script": "app.js",
-        "cwd": "/app/modules/agile_server/",
+        "cwd": "/usr/src/app/modules/agile_server/",
         "log_date_format": "YYYY-MM-DD HH:mm Z",
         "merge_logs": true,
         "out_file": "/data/logs/agile_server_out.log",
@@ -19,7 +19,7 @@
     }, {
         "name": "data_server",
         "script": "app.js",
-        "cwd": "/app/modules/data_server/",
+        "cwd": "/usr/src/app/modules/data_server/",
         "log_date_format": "YYYY-MM-DD HH:mm Z",
         "merge_logs": true,
         "out_file": "/data/logs/data_server_out.log",
@@ -36,7 +36,7 @@
     }, {
         "name": "agile_client",
         "script": "app.js",
-        "cwd": "/app/modules/agile_client/",
+        "cwd": "/usr/src/app/modules/agile_client/",
         "log_date_format": "YYYY-MM-DD HH:mm Z",
         "merge_logs": true,
         "out_file": "/data/logs/agileclient_out.log",
