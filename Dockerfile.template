@@ -67,7 +67,7 @@ COPY ./app/package.json /usr/src/app
 RUN npm i  --prefix /usr/src/app
 
 # Move app to filesystem
-COPY app/ /usr/src/app
+COPY app/ /usr/src/app/
 
 # Recursively npm install for each module found
 RUN cd /usr/src/app && chmod +x npm_i_modules.sh && /bin/bash npm_i_modules.sh
