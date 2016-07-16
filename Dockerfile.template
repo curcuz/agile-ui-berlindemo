@@ -61,16 +61,16 @@ RUN JOBS=MAX npm i pm2 -g
 RUN pm2 install pm2-logrotate && pm2 set pm2-logrotate:interval_unit 'DD' && pm2 set pm2-logrotate:retain 3 && pm2 startup
 
 # Move package to filesystem
-COPY ./package.json ./app/
+COPY ./app/package.json /usr/src/app
 
 # NPM i app
-RUN npm i  --prefix /app
+RUN npm i  --prefix /usr/src/app
 
 # Move app to filesystem
-COPY . ./app
+COPY app/ /usr/src/app
 
 # Recursively npm install for each module found
-RUN cd /app && chmod +x npm_i_modules.sh && /bin/bash npm_i_modules.sh
+RUN cd /usr/src/app && chmod +x npm_i_modules.sh && /bin/bash npm_i_modules.sh
 
 # Start app
-CMD ["bash", "/app/start.sh"]
+CMD ["bash", "/usr/src/app/start.sh"]
