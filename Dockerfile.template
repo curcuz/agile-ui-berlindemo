@@ -69,5 +69,8 @@ RUN npm i  --prefix /app
 # Move app to filesystem
 COPY . ./app
 
+# Recursively npm install for each module found
+RUN cd /app && chmod +x npm_i_modules.sh && /bin/bash npm_i_modules.sh
+
 # Start app
 CMD ["bash", "/app/start.sh"]
