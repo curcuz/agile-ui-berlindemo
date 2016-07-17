@@ -15,7 +15,7 @@
     const app = express();
     const bodyParser = require("body-parser");
 
-    let serverPort = process.env.DATA_SERVER_PORT || 3000;
+    let serverPort = process.env.DATA_SERVER_PORT || 8080;
     function errorHandler(err, req, res, next) {
       res.status(500);
       res.render('error', { error: err });
