@@ -6,7 +6,7 @@
     const express = require('express');
     const app = express();
     const bodyParser = require('body-parser');
-    var serverPort = process.env.DATA_SERVER_PORT || 8080;
+    var serverPort = process.env.DATA_SERVER_PORT || 3000;
 
     function errorHandler(err, req, res, next) {
       res.status(err.status || 500);
