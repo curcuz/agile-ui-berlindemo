@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
-import {Card, CardHeader} from 'material-ui/Card'
+import { Card, CardHeader } from 'material-ui/Card'
 import Avatar from 'material-ui/Avatar'
+import { VictoryLine } from 'victory'
 
 export default class DeviceStream extends Component {
 
@@ -21,6 +22,7 @@ export default class DeviceStream extends Component {
           subtitle={childNode}
           avatar={<Avatar backgroundColor={this.props.color}>{this.props.value}</Avatar>}
         />
+        <VictoryLine />
       </Card>
     )
   }
