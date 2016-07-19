@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Card, CardHeader, CardText } from 'material-ui/Card'
 import Avatar from 'material-ui/Avatar'
-import { VictoryChart, VictoryLine, VictoryScatter } from 'victory'
 import randomMC from 'random-material-color'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
