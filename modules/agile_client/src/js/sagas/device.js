@@ -24,7 +24,7 @@ function* streamPoller() {
        const limit = streams[s].limit || 10
        yield call(requestHandler, deviceStreamFetch(device, streams[s], limit))
      }
-     yield call(delay, 3000)
+     yield call(delay, 2000)
    }
  } finally {
    if (yield cancelled())

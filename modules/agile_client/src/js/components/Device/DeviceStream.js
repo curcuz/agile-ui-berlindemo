@@ -38,7 +38,7 @@ export default class DeviceStream extends Component {
             <MenuItem value={50} primaryText="Day" />
             <MenuItem value={100} primaryText="Week" />
           </SelectField>
-        <Graph series={this.props.series} streamid={this.props.id} color={this.props.color} />
+        <Graph series={this.props.series} streamid={this.props.id} color={this.state.color} />
       </CardText>
       </Card>
     )

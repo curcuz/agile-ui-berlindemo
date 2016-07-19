@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import NVD3Chart from 'react-nvd3'
-
+import {AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer} from 'recharts'
 export default class Graph extends Component {
 
   static propTypes = {
@@ -10,22 +9,14 @@ export default class Graph extends Component {
   }
 
   renderGraph(series) {
-    let datum = [{
-          key: this.props.streamid,
-          values: series
-        }]
     if (series.length > 0) {
       return (
-      <NVD3Chart
-      id="barChart"
-      type="barChart"
-      showValues="true"
-      datum={datum}
-      x="date"
-      y="value"
-      tooltip={{enabled: true}}
-      containerStyle={'width: 100% !important'}
-      />
+        <AreaChart width={730} height={250} data={series} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+          <Area isAnimationActive={false} type="monotone" dataKey="value" stroke={this.props.color} fillOpacity={.5} fill={this.props.color} />
+          <XAxis dataKey="date" />
+          <YAxis />
+          <Tooltip />
+        </AreaChart>
       )
     }
   }
