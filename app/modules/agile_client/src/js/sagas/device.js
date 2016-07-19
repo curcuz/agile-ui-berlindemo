@@ -1,22 +1,28 @@
 import { delay, takeEvery } from 'redux-saga'
-import { call, put, fork, cancelled } from 'redux-saga/effects'
+import { call, put, fork, cancelled, select } from 'redux-saga/effects'
 import * as types from '../constants/ActionTypes'
 import { redirector, requestHandler } from '../utils'
 import { deviceFetch, deviceStreamFetch } from '../actions/device'
 
 function* deviceListeners() {
-  yield takeEvery([types.DEVICE_FETCH, types.DEVICE_DELETE], requestHandler)
+  yield takeEvery([types.DEVICE_FETCH, types.DEVICE_STREAM_FETCH, types.DEVICE_DELETE], requestHandler)
 }
 
 function* deviceRedirectors() {
   yield takeEvery(types.DEVICE_DELETE_SUCCEEDED, redirector, '/')
 }
 
-function* streamPoller(action) {
+function* streamPoller() {
  try {
    while (true) {
-     for (var s in action.data.streams) {
-       yield call(requestHandler, deviceStreamFetch(action.data, action.data.streams[s]))
+     const currentState = yield select()
+     const device = currentState.device.item
+     const streams = currentState.device.item.streams
+
+     console.log("RUNNING")
+     for (var s in streams) {
+       const limit = streams[s].limit || 10
+       yield call(requestHandler, deviceStreamFetch(device, streams[s], limit))
      }
      yield call(delay, 2000)
    }

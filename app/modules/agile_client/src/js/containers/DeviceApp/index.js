@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Device, NoResults } from '../../components'
 import { bindActionCreators } from 'redux'
-import { deviceDelete, deviceGafanaLink } from '../../actions/device'
+import { deviceDelete, deviceStreamFetch } from '../../actions/device'
 
 class DeviceApp extends Component {
 
@@ -12,7 +12,7 @@ class DeviceApp extends Component {
   }
 
   render () {
-    const { device: { item, loading, error }, actions } = this.props
+    const { device: { item, loading, error }, actions, deviceStreamFetch } = this.props
     if (error) {
       return (<NoResults text='Something went wrong'/>)
     } else if (item.length < 1) {
@@ -23,6 +23,7 @@ class DeviceApp extends Component {
         actions={actions}
         loading={loading}
         error={error}
+        deviceStreamFetch={deviceStreamFetch}
         />)
     }
   }
@@ -38,12 +39,10 @@ function mapDispatchToProps(dispatch) {
   let actions = [{
     text: 'Delete',
     func:  bindActionCreators(deviceDelete, dispatch)
-  },{
-    text: 'View Data',
-    func:  bindActionCreators(deviceGafanaLink, dispatch)
   }]
   return {
-    actions: actions
+    actions: actions,
+    deviceStreamFetch: bindActionCreators(deviceStreamFetch, dispatch)
   }
 }
 

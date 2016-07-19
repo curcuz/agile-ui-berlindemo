@@ -4,14 +4,12 @@ import DeviceBasicInfo from './DeviceBasicInfo'
 import Loading from '../Loading/Loading'
 import DeviceStream from './DeviceStream'
 import DeviceActions from './DeviceActions'
-var randomMC = require('random-material-color')
 
 export default class Device extends Component {
 
   static propTypes = {
     loading: PropTypes.string,
     actions: PropTypes.array,
-    color: PropTypes.string,
     device: PropTypes.object
   }
 
@@ -24,9 +22,11 @@ export default class Device extends Component {
             key={index}
             id={stream.id}
             unit={stream.unit}
-            value={stream.value}
-            color={randomMC.getColor()}
-            time={stream.time}
+            limit={stream.limit}
+            lastUpdate={stream.lastUpdate}
+            series={stream.series ?  stream.series: []}
+            deviceStreamFetch={this.props.deviceStreamFetch}
+            device={this.props.device}
             />
         )
       )
