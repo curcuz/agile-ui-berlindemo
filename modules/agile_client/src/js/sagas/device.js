@@ -18,13 +18,11 @@ function* streamPoller() {
      const currentState = yield select()
      const device = currentState.device.item
      const streams = currentState.device.item.streams
-
-     console.log("RUNNING")
      for (var s in streams) {
        const limit = streams[s].limit || 10
        yield call(requestHandler, deviceStreamFetch(device, streams[s], limit))
      }
-     yield call(delay, 2000)
+     yield call(delay, 3000)
    }
  } finally {
    if (yield cancelled())

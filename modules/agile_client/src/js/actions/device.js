@@ -26,10 +26,11 @@ export function deviceDelete(device) {
 }
 
 export function deviceStreamFetch(device, stream, limit) {
+  console.log('ACTIONS', limit)
   return {
     type: types.DEVICE_STREAM_FETCH,
     method: 'GET',
-    url: `${BASE_API}/buckets/${device.id}/${stream.id}/data/${stream.limit}`,
+    url: `${BASE_API}/buckets/${device.id}/${stream.id}/data/${limit}`,
     body: null,
     stream: stream.id, // this is so we don't have to extract the id from the url in the reducer
     limit: limit
