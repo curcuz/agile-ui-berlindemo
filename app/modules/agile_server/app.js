@@ -79,11 +79,11 @@
       res.status(200).send(device)
     });
 
-    app.get('/api/protocals/discovery', function(req, res) {
+    app.get('/api/protocols/discovery', function(req, res) {
       res.status(200).send(discovery)
     });
 
-    app.post('/api/protocals/discovery', function(req, res) {
+    app.post('/api/protocols/discovery', function(req, res) {
       discovery.on = true
       SensorTag.discoverAll(onDiscover);
       res.status(200).send(discovery)
