@@ -60,14 +60,17 @@ RUN JOBS=MAX npm i pm2 -g
 # Install PM2 log-rotate
 RUN pm2 install pm2-logrotate && pm2 set pm2-logrotate:interval_unit 'DD' && pm2 set pm2-logrotate:retain 3 && pm2 startup
 
-# Move package to filesystem
-COPY ./package.json ./app/
+# resin-sync will always sync to /usr/src/app, so code needs to be here.
+WORKDIR /usr/src/app
+
+# copy app/ directory into WORKDIR
+COPY app/ ./
 
 # NPM i app
-RUN npm i  --prefix /app
+RUN npm i  --prefix /usr/src/app
 
-# Move app to filesystem
-COPY . ./app
+# Recursively npm install for each module found
+RUN cd /usr/src/app && chmod +x npm_i_modules.sh && /bin/bash npm_i_modules.sh
 
 # Start app
-CMD ["bash", "/app/start.sh"]
+CMD ["bash", "/usr/src/app/start.sh"]
