@@ -1,6 +1,6 @@
 // Any deviceList view triggers go here
 import * as types from '../constants/ActionTypes'
-import { BASE_API, MIDDLEWARE_API } from '../constants/Endpoints'
+import { BASE_API, DATA_API } from '../constants/Endpoints'
 
 // request agile API to register device
 export function deviceRegister(device) {
@@ -19,7 +19,7 @@ export function deviceProvision(device) {
   return {
     type: types.DEVICE_PROVISION,
     method: 'POST',
-    url: `${MIDDLEWARE_API}/db/create`,
+    url: `${DATA_API}/buckets`,
     body: device,
     confirm: true,
     confirmation: 'Device database successful created'
