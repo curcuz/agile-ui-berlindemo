@@ -79,17 +79,19 @@
       res.status(200).send(device)
     });
 
-    app.get('/api/protocals/discovery', function(req, res) {
+    app.get('/api/protocols/discovery', function(req, res) {
       res.status(200).send(discovery)
     });
 
-    app.post('/api/protocals/discovery', function(req, res) {
+    app.post('/api/protocols/discovery', function(req, res) {
       discovery.on = true
+      SensorTag.discoverAll(onDiscover);
       res.status(200).send(discovery)
     });
 
     app.delete('/api/protocols/discovery', function(req, res) {
       discovery.on = false
+      SensorTag.stopDiscoverAll();
       res.status(204).send()
     });
 
@@ -129,4 +131,7 @@
       console.log(chalk.cyan('Agile Server listening on port '+serverPort));
     });
 
+    function onDiscover(sensorTag) {
+      console.log('discovered new device: '+chalk.cyan(sensorTag.type)+' with id: '+chalk.cyan(sensorTag.id));
+    }
 })();
