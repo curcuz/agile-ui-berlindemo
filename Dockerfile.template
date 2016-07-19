@@ -5,20 +5,9 @@ ENV INITSYSTEM on
 
 # Install apt dependencies
 RUN apt-get clean && apt-get update && apt-get install -y \
-  wget \
-  curl
-
-# Add apt source of the foundation repository
-# We need this source because bluez needs to be patched in order to work with rpi3 ( Issue #1314: How to get BT working on Pi3B. by clivem in raspberrypi/linux on GitHub )
-# Add it on top so apt will pick up packages from there
-RUN sed -i '1s#^#deb http://archive.raspberrypi.org/debian jessie main\n#' /etc/apt/sources.list
-
-# Add the key for foundation repository
-RUN wget http://archive.raspberrypi.org/debian/raspberrypi.gpg.key -O - | sudo apt-key add -
-
-# Install apt dependencies
-RUN apt-get clean && apt-get update && apt-get install -y \
   apt-utils \
+  wget \
+  curl \
   build-essential \
   python-dev \
   python-pip \
@@ -41,18 +30,11 @@ RUN wget https://raw.githubusercontent.com/curcuz/agile-ui-berlindemo/master/Doc
 # Telegraf
 RUN wget https://raw.githubusercontent.com/curcuz/agile-ui-berlindemo/master/Dockerbin/telegraf_0.3.0-beta2_armhf.deb && dpkg -i telegraf_0.3.0-beta2_armhf.deb && rm telegraf_0.3.0-beta2_armhf.deb
 
-# Grafana
-RUN wget https://raw.githubusercontent.com/curcuz/agile-ui-berlindemo/master/Dockerbin/grafana_2.6.0_armhf.deb && dpkg -i grafana_2.6.0_armhf.deb && rm grafana_2.6.0_armhf.deb
-
 # Disable bluetooth service - we will manually start it later
 RUN systemctl disable bluetooth
 
-# Update grafana config
-COPY ./Dockerbin/grafana.ini /etc/grafana/grafana.ini
-COPY ./Dockerbin/grafana-server.service /usr/lib/systemd/system/grafana-server.service
-
 # Start services on boot
-RUN systemctl enable influxdb && systemctl enable telegraf && systemctl enable grafana-server
+RUN systemctl enable influxdb && systemctl enable telegraf
 
 # Install PM2
 RUN JOBS=MAX npm i pm2 -g
