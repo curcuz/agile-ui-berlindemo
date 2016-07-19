@@ -10,7 +10,7 @@
   },
   "bugs": "https://github.com/resin-io-playground/issues",
   "scripts": {
-    "start": "node app.js",
+    "start": "node app.js"
   },
   "dependencies": {
     "compression": "^1.6.2",
