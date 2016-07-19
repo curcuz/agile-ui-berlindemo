@@ -25,20 +25,13 @@ export function deviceDelete(device) {
   }
 }
 
-export function deviceStreamFetch(device, stream) {
+export function deviceStreamFetch(device, stream, limit) {
   return {
     type: types.DEVICE_STREAM_FETCH,
     method: 'GET',
-    url: `${BASE_API}/device/${device.id}/${stream.id}/lastUpdate`,
-    body: null
-  }
-}
-
-export function deviceGafanaLink(device) {
-  return {
-    type: types.DEVICE_STREAM_FETCH,
-    method: 'GET',
-    url: `${BASE_API}/device/${device.id}`,
-    body: null
+    url: `${BASE_API}/buckets/${device.id}/${stream.id}/data/${stream.limit}`,
+    body: null,
+    stream: stream.id, // this is so we don't have to extract the id from the url in the reducer
+    limit: limit
   }
 }
