@@ -151,7 +151,7 @@
         ]
       };
       wildDevices.push(wildDevice);
-      console.log(wildDevices);
+      console.dir(wildDevices);
     }
     function onStopDiscover() {
       console.log('AgileServer: discovery stopped');
