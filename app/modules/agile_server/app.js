@@ -138,7 +138,7 @@
       let wildDevice = {
         "id": sensorTag.id,
         "name": sensorTag.type,
-        "path": "iot.agile.device."+sensorTag.type,
+        "path": "iot.agile.device."+sensorTag.id,
         "streams": [
           {
             "id": "temperature",
