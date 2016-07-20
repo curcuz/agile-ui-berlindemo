@@ -16,7 +16,6 @@
     "express": "^4.14.0",
     "lodash": "^4.6.0",
     "request": "^2.73.0",
-    "sensortag": "^1.2.2",
-    "sqlite3": "^3.1.4"
+    "sensortag": "^1.2.2"
   }
 }
