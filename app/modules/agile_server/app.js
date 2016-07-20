@@ -85,13 +85,14 @@
 
     app.post('/api/protocols/discovery', function(req, res) {
       discovery.on = true
+      console.log('AgileServer: discovery started');
       SensorTag.discoverAll(onDiscover);
       res.status(200).send(discovery)
     });
 
     app.delete('/api/protocols/discovery', function(req, res) {
       discovery.on = false
-      SensorTag.stopDiscoverAll(onDiscover);
+      SensorTag.stopDiscoverAll(onStopDiscover);
       res.status(204).send()
     });
 
@@ -132,6 +133,9 @@
     });
 
     function onDiscover(sensorTag) {
-      console.log('discovered new device: '+chalk.cyan(sensorTag.type)+' with id: '+chalk.cyan(sensorTag.id));
+      console.log('AgileServer: discovered new device: '+chalk.cyan(sensorTag.type)+' with id: '+chalk.cyan(sensorTag.id));
+    }
+    function onStopDiscover(sensorTag) {
+      console.log('AgileServer: discovery stopped');
     }
 })();
