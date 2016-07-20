@@ -81,7 +81,7 @@
 
     // read data from bucket
     app.get('/buckets/:bucketsId/:streamId/data/:limit', function(req, res) {
-      var query = 'SELECT * FROM ' + req.params.streamId + ' WHERE time > now() - ' + req.params.limit;
+      var query = 'SELECT * FROM ' + req.params.streamId + ' LIMIT ' + req.params.limit;
       client.query([req.params.bucketsId], query, function(err, results) {
         if (err) return next(err);
         res.status(200).send(results);
