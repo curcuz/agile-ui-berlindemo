@@ -25,10 +25,10 @@
     });
     app.use(errorHandler);
 
-    var agileDevices = [] // these are "registered devices"
-    var wildDevices = require('./devices.json') // devices found by "/discovery"
-    var device;
-    var discovery = {
+    let agileDevices = []; // these are "registered devices"
+    let wildDevices = [];
+    let device;
+    let discovery = {
       on: false,
       protocols: [
         {
@@ -41,7 +41,7 @@
         },
         {
           "name": "ZWave",
-          "status": "FAILURE"
+          "status": "NONE"
         }
       ]
     }
@@ -60,14 +60,14 @@
     });
 
     app.post('/api/devices', function(req, res) {
-      var device = req.body
+      let device = req.body
       agileDevices.push(device)
       _.pullAllWith(wildDevices, [device], _.isEqual);
       res.status(200).send(device)
     });
 
     app.delete('/api/devices/:deviceid', function(req, res) {
-      var deviceid = req.params.deviceid
+      let deviceid = req.params.deviceid
       device = _.find(agileDevices, { 'id': deviceid });
       wildDevices.push(device)
       _.pullAllWith(agileDevices, [device], _.isEqual);
@@ -75,7 +75,7 @@
     });
 
     app.get('/api/devices/:deviceid', function(req, res) {
-      var deviceid = req.params.deviceid
+      let deviceid = req.params.deviceid
       device = _.find(agileDevices, { 'id': deviceid });
       res.status(200).send(device)
     });
@@ -112,7 +112,7 @@
     });
 
     app.get('/api/device/:deviceId/:componentId/lastUpdate', function(req, res) {
-      var newDate = new Date(Date.now());
+      let newDate = new Date(Date.now());
       dateString = newDate.toUTCString();
 
       lastUpdate = {
@@ -135,8 +135,25 @@
 
     function onDiscover(sensorTag) {
       console.log('AgileServer: discovered new device: '+chalk.cyan(sensorTag.type)+' with id: '+chalk.cyan(sensorTag.id));
+      let wildDevice = {
+        "id": sensorTag.id,
+        "name": sensorTag.type,
+        "path": "iot.agile.device."+sensorTag.type,
+        "streams": [
+          {
+            "id": "temperature",
+            "unit": "celsius"
+          },
+          {
+            "id": "light",
+            "unit": "lumen"
+          }
+        ]
+      };
+      wildDevices.push(wildDevice);
+      console.log(wildDevices);
     }
-    function onStopDiscover(sensorTag) {
+    function onStopDiscover() {
       console.log('AgileServer: discovery stopped');
     }
 })();
