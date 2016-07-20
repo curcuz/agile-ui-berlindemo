@@ -91,7 +91,7 @@
 
     app.delete('/api/protocols/discovery', function(req, res) {
       discovery.on = false
-      SensorTag.stopDiscoverAll();
+      SensorTag.stopDiscoverAll(onDiscover);
       res.status(204).send()
     });
 
