@@ -27,6 +27,7 @@
 
     var agileDevices = [] // these are "registered devices"
     var wildDevices = require('./devices.json') // devices found by "/discovery"
+    var device;
     var discovery = {
       on: false,
       protocols: [
