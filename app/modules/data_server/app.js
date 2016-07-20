@@ -79,7 +79,8 @@
       })
     });
 
-    // read data from bucket
+    // read real data from bucket
+    /*
     app.get('/buckets/:bucketsId/:streamId/data/:limit', function(req, res) {
       var query = 'SELECT * FROM ' + req.params.streamId + ' LIMIT ' + req.params.limit;
       client.query([req.params.bucketsId], query, function(err, results) {
@@ -90,6 +91,20 @@
 
     app.listen(serverPort, function() {
       console.log(chalk.cyan('Data Server listening on port '+serverPort));
+    });
+    */
+    var streamArray = []
+    app.get('/buckets/:bucketsId/:streamId/data/:limit', function(req, res) {
+      var newDate = Date.now();
+      // dateString = newDate.toUTCString();
+
+      lastUpdate = {
+        id: req.params.componentId,
+        value: chance.integer({min: 0, max: 20}),
+        date: newDate
+      }
+      streamArray.unshift(lastUpdate)
+      res.status(200).send(streamArray.slice(0, req.params.limit))
     });
 
 })();
